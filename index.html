@@ -1,15 +1,27 @@
 <!DOCTYPE html>
-<html lang='en' ng-app='studentRoster'>
+<html lang='en' ng-app='animalShelter'>
     <head>
         <meta charset="UTF-8">
-        <title>Student App</title>
+        <title>Connor and Reid's Animal Shelter</title>
         <script src="lib/angular.js"></script>
         <script src="controllers/app.js"></script>
+        <script src="controllers/AdoptionController.js"></script>
+        <script src="controllers/AnimalController.js"></script>
+        <script src="services/ShelterFactory.js"></script>
         <link rel="stylesheet" href="css/bootstrap.min.css">
     </head>
     <body>
         <div class="container">
-            
+            <div ng-controller="AnimalsCtrl">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h2>Animal List</h2>
+                        <ul>
+                            <li ng-repeat="item in animals">{{ item.name }}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </body>
 </html>
