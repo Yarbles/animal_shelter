@@ -14,6 +14,7 @@
     <body>
         <div class="container">
             <div ng-controller="AnimalsCtrl">
+                        <h1 class="jumbotron">Connor &amp; Reid's Animal Shelter</h1>
                 <div class="row">
                     <div class="col-md-4">
                         <h2>New Animal</h2>
@@ -26,15 +27,31 @@
                             <button type="submit" class="btn btn-info">Submit</button>
                         </form>
                     </div>
+
+                    <!-- <div class="col-md-4">
+                        <h2>Search Animal Type</h2>
+                        <form ng-submit="countAnimals()" class="form-inline" role="form">
+                            <div class="form-group">
+                                <select ng-model="searchType" class="form-control" ng-options="opt for opt in typeOptions">
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-info">Submit</button>
+                        </form>
+                        <h3>{{ count }}</h3>
+                    </div> -->
+
                 </div>
             </div>
             <div ng-controller="AdoptionCtrl">
                 <div class="row">
                     <div class="col-md-4">
-                        <h2>Animal in Shelter</h2>
+                        <h2>Animals in Shelter</h2>
+                        <p ng-show="shelterAnimals.length"> -click button to mark as adopted- </p>
                         <ul>
-                            <li ng-repeat="item in animals | filter:{adopted:false}"><img ng-src='images/{{ item.type }}.png' alt="Animal Image"/> {{ item.name }} the {{ item.type }}
-                            <a ng-click="adoptAnimal(item)"> -Mark this animal as adopted- </a>
+                            <li ng-repeat="item in shelterAnimals = (animals | filter:{adopted:false})">
+                                <button class="btn btn-danger" ng-click="adoptAnimal(item)">
+                                    <img ng-src='images/{{ item.type }}.png' alt="Animal Image"/> {{ item.name }} the {{ item.type }}
+                                </button>
                             </li>
                         </ul>
                     </div>
@@ -45,13 +62,17 @@
                     <div class="col-md-4" ng-show="adoptedPets.length">
                         <h2>Adopted Animals</h2>
                         <ul>
-                            <li ng-repeat="item in adoptedPets = (animals | filter:{adopted:true})"><img ng-src='images/{{ item.type }}.png' alt="Animal Image"/>
-                                {{ item.name }} the {{ item.type }}
+                            <li ng-repeat="item in adoptedPets = (animals | filter:{adopted:true})">
+                                <span class="btn btn-success">
+                                    <img ng-src='images/{{ item.type }}.png' alt="Animal Image"/>
+                                    {{ item.name }} the {{ item.type }}
+                                </span>
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
+
 
         </div>
     </body>

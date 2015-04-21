@@ -4,4 +4,5 @@ animalShelter.controller('AdoptionCtrl', function AdoptionCtrl($scope, ShelterFa
     $scope.adoptAnimal = function(animal) {
         animal.adopted = true;
     };
+
 });
