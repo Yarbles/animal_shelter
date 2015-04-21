@@ -9,6 +9,7 @@
         <script src="controllers/AdoptionController.js"></script>
         <script src="services/ShelterFactory.js"></script>
         <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/styles.css">
     </head>
     <body>
         <div class="container">
@@ -19,7 +20,7 @@
                         <form ng-submit="addAnimal()" class="form-inline" role="form">
                             <div class="form-group">
                                 <input type="text" ng-model="animalName" class="form-control" placeholder="Enter name" required>
-                                <select ng-model="animalType" class="form-control" ng-options="opt as opt for opt in typeOptions">
+                                <select ng-model="animalType" class="form-control" ng-options="opt for opt in typeOptions">
                                 </select>
                             </div>
                             <button type="submit" class="btn btn-info">Submit</button>
@@ -32,7 +33,7 @@
                     <div class="col-md-4">
                         <h2>Animal in Shelter</h2>
                         <ul>
-                            <li ng-repeat="item in animals | filter:{adopted:false}">{{ item.name }}, {{ item.type }}
+                            <li ng-repeat="item in animals | filter:{adopted:false}"><img ng-src='images/{{ item.type }}.png' alt="Animal Image"/> {{ item.name }} the {{ item.type }}
                             <a ng-click="adoptAnimal(item)"> -Mark this animal as adopted- </a>
                             </li>
                         </ul>
@@ -44,8 +45,8 @@
                     <div class="col-md-4" ng-show="adoptedPets.length">
                         <h2>Adopted Animals</h2>
                         <ul>
-                            <li ng-repeat="item in adoptedPets = (animals | filter:{adopted:true})">
-                                {{ item.name }}, {{ item.type }}
+                            <li ng-repeat="item in adoptedPets = (animals | filter:{adopted:true})"><img ng-src='images/{{ item.type }}.png' alt="Animal Image"/>
+                                {{ item.name }} the {{ item.type }}
                             </li>
                         </ul>
                     </div>
