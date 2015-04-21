@@ -6,6 +6,7 @@
         <script src="lib/angular.js"></script>
         <script src="controllers/app.js"></script>
         <script src="controllers/AnimalController.js"></script>
+        <script src="controllers/AdoptionController.js"></script>
         <script src="services/ShelterFactory.js"></script>
         <link rel="stylesheet" href="css/bootstrap.min.css">
     </head>
@@ -25,17 +26,32 @@
                         </form>
                     </div>
                 </div>
+            </div>
+            <div ng-controller="AdoptionCtrl">
                 <div class="row">
                     <div class="col-md-4">
-                        <h2>Animal List</h2>
+                        <h2>Animal in Shelter</h2>
                         <ul>
-                            <li ng-repeat="item in animals">{{ item.name }} , {{ item.type }}</li>
+                            <li ng-repeat="item in animals | filter:{adopted:false}">{{ item.name }}, {{ item.type }}
+                            <a ng-click="adoptAnimal(item)"> -Mark this animal as adopted- </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-4" ng-show="adoptedPets.length">
+                        <h2>Adopted Animals</h2>
+                        <ul>
+                            <li ng-repeat="item in adoptedPets = (animals | filter:{adopted:true})">
+                                {{ item.name }}, {{ item.type }}
+                            </li>
                         </ul>
                     </div>
                 </div>
             </div>
+
         </div>
     </body>
 </html>
-
-<!-- <script src="controllers/AdoptionController.js"></script> -->

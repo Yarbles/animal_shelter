@@ -12,4 +12,5 @@ animalShelter.controller('AnimalsCtrl', function AnimalsCtrl($scope, ShelterFact
         ShelterFactory.addAnimal(name, type);
         $scope.animalName = null;
     };
-})
+
+});
